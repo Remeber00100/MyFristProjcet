@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.SA.dao.userMapper">
+
+
+    <select id="findAllUser" resultType="com.SA.pojo.vipUser">
+        select * from `user`.`vipusers`
+    </select>
+
+    <insert id="addUser">
+        INSERT INTO `user`.`vipusers` (`account`, `password`,`vipLv`,`vipBeginDate`,`vipTime`) VALUES (#{account}, #{password},#{vipLv},#{vipBeginDate},#{vipTime});
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM `user`.`vipusers` WHERE (`id` = #{id});
+    </delete>
+
+    <select id="ll" resultType="com.SA.pojo.admin">
+        select *
+        from `user`.`ad`
+        where AdminID = #{AdminID}
+          and AdminPassWorld = #{AdminPassWorld}
+    </select>
+
+    <select id="findAdmin">
+        select * from `user`.`ad` where AdminID = #{AdminID}
+    </select>
+
+    <select id="edit" resultType="com.SA.pojo.vipUser">
+        select *
+        from `user`.`vipusers`
+        where (`id` = #{id})
+    </select>
+
+
+
+    <select id="allVipMount" resultType="int">
+        SELECT COUNT(*)
+        FROM `user`.`vipusers`;
+    </select>
+</mapper>
